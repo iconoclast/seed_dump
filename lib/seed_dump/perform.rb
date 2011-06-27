@@ -25,9 +25,9 @@ module SeedDump
     end
 
     def loadModels
-      Dir[@model_dir].sort.each do |f|
+      Dir[@model_dir].each do |f|
         model = File.basename(f, '.*').camelize.constantize
-        @models.push model if @opts['models'].include?(model) || @opts['models'].empty? 
+        @models.push model if @opts['models'].include?(model) || @opts['models'].empty?
       end
     end
 
