@@ -27,6 +27,7 @@ module SeedDump
     def loadModels
       Dir[@model_dir].each do |f|
         model = File.basename(f, '.*').camelize.constantize
+        next unless model.ancestors.include?(ActiveRecord::Base)
         @models.push model if @opts['models'].include?(model) || @opts['models'].empty?
       end
     end
